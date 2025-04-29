@@ -1,28 +1,8 @@
-// testRegistry.ts
-import { register, getHealthyInstances, updateHealth } from './registry';
-import { v4 as uuidv4 } from 'uuid';
+// // testRegistry.ts
+// import { getAllInstances, getHealthyInstances } from './registry';
 
-const instance1 = {
-  id: uuidv4(),
-  url: 'http://localhost:3001',
-  healthy: true,
-};
-
-const instance2 = {
-  id: uuidv4(),
-  url: 'http://localhost:3002',
-  healthy: false,
-};
-
-// 註冊服務
-register('user-service', instance1);
-register('user-service', instance2);
-
-// 驗證健康實例
-console.log('Healthy instances:', getHealthyInstances('user-service'));
-
-// 更新實例健康狀態
-updateHealth('user-service', instance2.id, true);
-
-// 再次檢查
-console.log('Updated healthy instances:', getHealthyInstances('user-service'));
+// // 稍微等待一段時間以確保註冊完畢
+// setTimeout(() => {
+//   console.log('Healthy instances of user-service:', getHealthyInstances('user-service'));
+//   console.log('All instances of user-service:', getAllInstances('user-service'));
+// }, 2000);  // 等待 2 秒鐘後執行

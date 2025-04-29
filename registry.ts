@@ -1,28 +1,33 @@
-// registry.ts
-import { v4 as uuidv4 } from 'uuid';
+// import { log } from "console";
 
-interface ServiceInstance {
-  id: string;
-  url: string;
-  healthy: boolean;
-}
-
-const registry = new Map<string, ServiceInstance[]>();
-
-export function register(serviceName: string, instance: ServiceInstance) {
-  if (!registry.has(serviceName)) {
-    registry.set(serviceName, []);
-  }
-  registry.get(serviceName)?.push(instance);
-}
-
-export function getHealthyInstances(serviceName: string): ServiceInstance[] {
-  return (registry.get(serviceName) || []).filter(i => i.healthy);
-}
-
-export function updateHealth(serviceName: string, instanceId: string, healthy: boolean) {
-  const instances = registry.get(serviceName);
-  if (!instances) return;
-  const inst = instances.find(i => i.id === instanceId);
-  if (inst) inst.healthy = healthy;
-}
+// // registry.ts
+// interface ServiceInstance {
+//     id: string;
+//     url: string;
+//     healthy: boolean;
+//   }
+  
+//   const services: { [key: string]: ServiceInstance[] } = {};
+  
+//   // 註冊服務
+//   export function register(serviceName: string, instance: ServiceInstance) {
+//     console.log('register');
+//     if (!services[serviceName]) {
+//       services[serviceName] = [];
+//     }
+//     services[serviceName].push(instance);
+//     console.log(`Service registered: ${serviceName} - ${instance.url}`);
+//   }
+  
+//   // 獲取健康的服務實例
+//   export function getHealthyInstances(serviceName: string) {
+//     console.log('getHealthyInstances')
+//     return services[serviceName]?.filter(instance => instance.healthy) || [];
+//   }
+  
+//   // 獲取所有服務實例
+//   export function getAllInstances(serviceName: string) {
+//     console.log('getAllInstances');
+//     return services[serviceName] || [];
+//   }
+  
